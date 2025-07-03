@@ -18,5 +18,5 @@ function welcome(name, fees) {
 }
 //if we do console.log and not return then undefiend will print
 
-console.log(studentdetails("muskan", 30000, welcome));
+console.log(studentdetails("muskan", 30000, welcome));s
 console.log(studentdetails("muskan", 30000, emi));
