@@ -7,6 +7,7 @@
 
 // console.log(newarr);
 
+//PROTOTYPE METHOD
 let arr=[1,2,3,4,5];
 
 function doubleData(x) {
@@ -24,3 +25,4 @@ Array.prototype.mapReplica= function(logic){
 
 const myprotodata=arr.mapReplica(doubleData);
 console.log(myprotodata);
+
