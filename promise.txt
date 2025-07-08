@@ -1,0 +1,3 @@
+data type of promise-object
+.then executes all together after first
+.then called syncronouly
