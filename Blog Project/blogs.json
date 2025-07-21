@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Top 5 JavaScript Tips",
+    "desc": "Boost your JS skills with these simple yet effective tips for writing clean and efficient code.",
+    "image": "https://images.unsplash.com/photo-1505682634904-d7c8dca5efbf?auto=format&fit=crop&w=400&q=80",
+    "author": "Muskan Bhola",
+    "category": "Technology",
+    "date": "2025-07-15",
+    "publishedBy": "Admin"
+  },
+  {
+    "title": "Exploring the Hills of Manali",
+    "desc": "A detailed guide to exploring the serene and beautiful hills of Manali during summer.",
+    "image": "https://images.unsplash.com/photo-1526481280694-3de906cd87d1?auto=format&fit=crop&w=400&q=80",
+    "author": "Piyush Sacher",
+    "category": "Travel",
+    "date": "2025-07-18",
+    "publishedBy": "Admin"
+  },
+  {
+    "title": "10 Daily Habits for a Healthy Lifestyle",
+    "desc": "Follow these 10 simple daily habits to stay fit, healthy, and energized throughout the day.",
+    "image": "https://images.unsplash.com/photo-1518611012118-f6b3c1d38f71?auto=format&fit=crop&w=400&q=80",
+    "author": "Anshuman Singh",
+    "category": "Lifestyle",
+    "date": "2025-07-10",
+    "publishedBy": "Admin"
+  },
+  {
+    "title": "How to Learn Coding in 2025",
+    "desc": "A complete roadmap for beginners who want to become proficient in coding and web development.",
+    "image": "https://images.unsplash.com/photo-1519074002996-a69e7ac46a42?auto=format&fit=crop&w=400&q=80",
+    "author": "Muskan Bhola",
+    "category": "Technology",
+    "date": "2025-07-12",
+    "publishedBy": "Admin"
+  },
+  {
+    "title": "The Future of AI in 2025",
+    "desc": "Discover how Artificial Intelligence is transforming industries and creating new opportunities.",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=400&q=80",
+    "author": "Muskan Bhola",
+    "category": "Technology",
+    "date": "2025-07-20",
+    "publishedBy": "Admin"
+  },
+  {
+    "title": "Best 7 Beaches to Visit in India",
+    "desc": "Plan your next trip with this curated list of the most beautiful beaches in India.",
+    "image": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
+    "author": "Lakshay Kumar",
+    "category": "Travel",
+    "date": "2025-07-17",
+    "publishedBy": "Admin"
+  },
+  {
+    "title": "Morning Yoga Routine for Beginners",
+    "desc": "Start your day with these simple yoga poses to stay fresh, fit, and stress-free.",
+    "image": "https://images.unsplash.com/photo-1552628077-24658e5dd202?auto=format&fit=crop&w=400&q=80",
+    "author": "Anshuman Singh",
+    "category": "Lifestyle",
+    "date": "2025-07-16",
+    "publishedBy": "Admin"
+  },
+  {
+    "title": "Top 10 VS Code Extensions for Developers",
+    "desc": "Enhance your coding experience with these must-have VS Code extensions in 2025.",
+    "image": "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=400&q=80",
+    "author": "Piyush Sacher",
+    "category": "Technology",
+    "date": "2025-07-19",
+    "publishedBy": "Admin"
+  }
+]
