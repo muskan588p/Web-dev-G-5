@@ -1,0 +1,132 @@
+Using MongoDB:          7.0.14
+Using Mongosh:          2.3.0
+mongosh 2.5.6 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-07-09T22:06:02.856+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+BuzzChat              8.00 KiB
+admin                40.00 KiB
+chitkara            168.00 KiB
+config               72.00 KiB
+gym                 504.00 KiB
+healthcare_project   16.00 KiB
+local               104.00 KiB
+test                 28.00 KiB
+test> use details
+switched to db details
+details> db.createCollection("users")
+{ ok: 1 }
+details> db.users.insertOne(
+... {name:"muskan",
+... age:21,
+... city:"ambala"}
+... )
+{
+  acknowledged: true,
+  insertedId: ObjectId('6881b8a39c1b8e09be2710bc')
+}
+details> db.users.insertMany([{name:"piyush", age:20, city:"mohali"}, {name:"monika", age:51, city:"ludhiana"}, {name:"kulbir", age:50, city:"mohali"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6881ba5b9c1b8e09be2710bd'),
+    '1': ObjectId('6881ba5b9c1b8e09be2710be'),
+    '2': ObjectId('6881ba5b9c1b8e09be2710bf')
+  }
+}
+details> db.users.find()
+[
+  {
+    _id: ObjectId('6881b8a39c1b8e09be2710bc'),
+    name: 'muskan',
+    age: 21,
+    city: 'ambala'
+  },
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710bd'),
+    name: 'piyush',
+    age: 20,
+    city: 'mohali'
+  },
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710be'),
+    name: 'monika',
+    age: 51,
+    city: 'ludhiana'
+  },
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710bf'),
+    name: 'kulbir',
+    age: 50,
+    city: 'mohali'
+  }
+]
+details> db.users.find({"age":{$gt:40}})
+[
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710be'),
+    name: 'monika',
+    age: 51,
+    city: 'ludhiana'
+  },
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710bf'),
+    name: 'kulbir',
+    age: 50,
+    city: 'mohali'
+  }
+]
+details> db.users.find({"age":{$lt:40}})
+[
+  {
+    _id: ObjectId('6881b8a39c1b8e09be2710bc'),
+    name: 'muskan',
+    age: 21,
+    city: 'ambala'
+  },
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710bd'),
+    name: 'piyush',
+    age: 20,
+    city: 'mohali'
+  }
+]
+details> db.users.find({name: {$exists: true}})
+[
+  {
+    _id: ObjectId('6881b8a39c1b8e09be2710bc'),
+    name: 'muskan',
+    age: 21,
+    city: 'ambala'
+  },
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710bd'),
+    name: 'piyush',
+    age: 20,
+    city: 'mohali'
+  },
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710be'),
+    name: 'monika',
+    age: 51,
+    city: 'ludhiana'
+  },
+  {
+    _id: ObjectId('6881ba5b9c1b8e09be2710bf'),
+    name: 'kulbir',
+    age: 50,
+    city: 'mohali'
+  }
+]
+details> db.users.insertOne({date: ISODate()})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6881bc5a9c1b8e09be2710c0')
+}
+details>
