@@ -1,4 +1,10 @@
 const User = require("../models/userModel");
+const jwt = require("jsonwebtoken");
+
+const generateToken = (userId) =>{
+    return jwt.sign({userId}, process.env.JWT_SECRET_KEY);
+}
+
 
 const registerUser = async (req,res) =>{
     const { firstName, lastName, emailId, password} = req.body;
@@ -12,7 +18,7 @@ const registerUser = async (req,res) =>{
     //Check the user existing already in db or not
     const userExists = await User.findOne({emailId});
     if (userExists){
-        res.status(400).json({message: "Already Exist"});
+        return res.status(400).json({message: "Already Exist"});
     }
 
     const newUser = await User.create({
@@ -23,14 +29,30 @@ const registerUser = async (req,res) =>{
     });
 
     await newUser.save();
+    const tokenGen = generateToken(newUser._id)
+    console.log(tokenGen);
     
-    res.status(201).json("USER CREATED",{newUser});
+    return res.status(201).json("USER CREATED",tokenGen);
     
+    // res.status(201).json("USER CREATED",{newUser});    
 }
 
 
-// const loginUser = () => {
+const loginUser = async (req,res) => {
+     const { emailId, password} = req.body;
 
-// }
+     //Validation:
 
-module.exports = { registerUser }
+     if (!emailId || !password){
+        return res.status(400).send("Please Fill All the Details");
+     }
+
+     const userExists = await User.findOne({emailId});
+     
+     if(!userExists){
+        return res.status(400).send("User not found !!")
+     }
+     res.status(200).json({userExists});
+}
+
+module.exports = { registerUser, loginUser }
