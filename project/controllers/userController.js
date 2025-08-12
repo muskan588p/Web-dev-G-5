@@ -1,9 +1,10 @@
 const User = require("../models/userModel");
-const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+// const jwt = require("jsonwebtoken");
 
-const generateToken = (userId) =>{
-    return jwt.sign({userId}, process.env.JWT_SECRET_KEY);
-}
+// const generateToken = (userId) =>{
+//     return jwt.sign({userId}, process.env.JWT_SECRET_KEY);
+// }
 
 
 const registerUser = async (req,res) =>{
@@ -21,38 +22,71 @@ const registerUser = async (req,res) =>{
         return res.status(400).json({message: "Already Exist"});
     }
 
+    try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    //CREATE USER IN YOUR DATABASE
     const newUser = await User.create({
-        firstName,
-        lastName,
-        emailId,
-        password
+      firstName,
+      lastName,
+      emailId,
+      password: hashedPassword,
     });
 
     await newUser.save();
-    const tokenGen = generateToken(newUser._id)
-    console.log(tokenGen);
-    
-    return res.status(201).json("USER CREATED",tokenGen);
-    
-    // res.status(201).json("USER CREATED",{newUser});    
-}
+
+    // const tokenGen = generateToken(newUser._id)
+
+    return res.status(201).json({
+      message: "User Registered Successfully",
+      data: {
+        firstName,
+        emailId,
+        hashedPassword,
+      },
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
 
 
 const loginUser = async (req,res) => {
-     const { emailId, password} = req.body;
+    const { emailId, password} = req.body;
 
      //Validation:
 
-     if (!emailId || !password){
+    if (!emailId || !password){
         return res.status(400).send("Please Fill All the Details");
-     }
+    }
 
-     const userExists = await User.findOne({emailId});
+    const userExists = await User.findOne({emailId});
      
-     if(!userExists){
+    if(!userExists){
         return res.status(400).send("User not found !!")
-     }
-     res.status(200).json({userExists});
-}
+    }
+      //PASSWORD VERIFICATION: RIGHT OR WRONG
 
+  //  if (password != userExists.password){
+  //     return res.status(401).send("Password is Wrong");
+  //  }
+
+    try {
+    const isMatched = await bcrypt.compare(password, userExists.password);
+
+    if (!isMatched) {
+      return res.status(401).send("Password is Wrong");
+    }
+
+    return res.status(200).json({
+      message: "User Logged In Successfully",
+      userName: userExists.firstName,
+      emailId: userExists.emailId,
+    });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+    
 module.exports = { registerUser, loginUser }
