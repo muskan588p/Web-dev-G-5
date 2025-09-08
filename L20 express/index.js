@@ -1,6 +1,69 @@
+// const express = require("express");
+
+// const multer  = require('multer')
+// const upload = multer({ dest:'uploads/' })
+
+// const app = express();
+// const port = 3000;
+
+// // const upload = multer({ storage: storage })
+
+// app.post('/profile', upload.single('avatar'), function (req, res, next) {
+//   // req.body contains the text fields
+//   console.log(req.body);
+//   console.log(req.file);
+//   return res.redirect("/");
+
+//   // req.file is the `avatar` file
+//   // req.body will hold the text fields, if there were any
+// })
+
+//--------------------------------------------------------------
 const express = require("express");
+const multer  = require('multer')
+// const upload = multer({ dest:'uploads/' })
+
 const app = express();
 const port = 3000;
+
+// const upload = multer({ storage: storage })
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '/uploads')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.fieldname + '-' + uniqueSuffix)
+  }
+})
+
+const upload = multer({ storage: storage })
+
+app.post('/profile', upload.single('avatar'), function (req, res, next) {
+  // req.body contains the text fields
+  console.log(req.body);
+  console.log(req.file);
+  return res.redirect("/");
+
+  // req.file is the `avatar` file
+  // req.body will hold the text fields, if there were any
+})
+
+//OUTPUT
+// Example app listening on port 3000
+// [Object: null prototype] {}
+// {
+//   fieldname: 'avatar',
+//   originalname: 'CamScanner 07-16-2025 09.24.pdf',       
+//   encoding: '7bit',
+//   mimetype: 'application/pdf',
+//   destination: 'uploads/',
+//   filename: 'e900b01811c732eb49602cea8f92d22a',
+//   path: 'uploads\\e900b01811c732eb49602cea8f92d22a',     
+//   size: 83658
+// }
+
 
 //OVERRIDDING SENDSTATUS CODE
 
